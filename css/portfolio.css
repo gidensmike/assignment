@@ -1,0 +1,1479 @@
+/* ==========================================================================
+   ASSIGNMENT 1 — PORTFOLIO WEBSITE (premium redesign)
+   Extends the shared design system (css/style.css).
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Page overflow guard
+   ========================================================================== */
+.pf-page {
+  overflow-x: hidden;
+}
+
+.pf-page .site-shell,
+.pf-page .container {
+  min-width: 0;
+}
+
+/* Floating sticky pill nav — keep anchored sections clear of it */
+.pf-page section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+/* ==========================================================================
+   2. Hero
+   ========================================================================== */
+.pf-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-block: clamp(6.5rem, 12vh, 9rem) clamp(4rem, 7vh, 6rem);
+  background: var(--bg);
+}
+
+/* Layered blurred gradient blobs */
+.pf-hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.pf-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.5;
+}
+
+.pf-blob-1 {
+  width: 420px;
+  height: 420px;
+  top: -120px;
+  right: -80px;
+  background: radial-gradient(circle at 30% 30%, var(--accent), transparent 70%);
+}
+
+.pf-blob-2 {
+  width: 360px;
+  height: 360px;
+  bottom: -140px;
+  left: -60px;
+  background: radial-gradient(circle at 60% 40%, var(--accent), transparent 70%);
+}
+
+.pf-blob-3 {
+  width: 220px;
+  height: 220px;
+  top: 45%;
+  left: 55%;
+  background: radial-gradient(circle at 50% 50%, var(--accent), transparent 70%);
+  opacity: 0.3;
+}
+
+.pf-hero-grid {
+  position: relative;
+  display: grid;
+  gap: var(--space-5);
+  align-items: center;
+  width: 100%;
+}
+
+.pf-hero-copy {
+  max-width: 640px;
+}
+
+.pf-hello {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  margin-bottom: var(--space-3);
+}
+
+.pf-hello-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 4px var(--success-soft);
+}
+
+.pf-name {
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+  font-weight: var(--fw-extrabold);
+  margin-bottom: var(--space-2);
+}
+
+.pf-name .gradient {
+  background: linear-gradient(100deg, var(--accent), var(--accent-hover));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pf-role {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.pf-intro {
+  max-width: 560px;
+  color: var(--text-muted);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+.pf-intro strong {
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+
+.pf-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Portrait / avatar */
+.pf-portrait-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.pf-portrait {
+  position: relative;
+  width: min(300px, 70vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: block;
+  background:
+    radial-gradient(circle at 35% 30%, var(--accent-soft), transparent 60%),
+    var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.pf-portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+.pf-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06), inset 0 10px 30px rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+}
+
+/* "Open to work" badge — sits OUTSIDE the portrait, never clipped */
+.pf-portrait-badge {
+  position: absolute;
+  right: 1.5%;
+  bottom: 2%;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 0.5rem 0.95rem;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--success);
+  white-space: nowrap;
+  pointer-events: auto;
+  transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease),
+    border-color var(--speed) var(--ease);
+}
+
+.pf-portrait-badge:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--success) 45%, var(--border));
+  box-shadow: var(--shadow-lg), 0 12px 28px -12px color-mix(in srgb, var(--success) 50%, transparent);
+}
+
+.pf-portrait-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 4px var(--success-soft);
+  flex-shrink: 0;
+}
+
+/* Rotating dashed ring behind portrait */
+.pf-portrait-ring {
+  position: absolute;
+  z-index: 0;
+  width: min(340px, 78vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+  animation: spin 40s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   3. Reveal-on-scroll
+   ========================================================================== */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   4. Sticky navigation (glassmorphism)
+   ========================================================================== */
+.pf-nav {
+  position: sticky;
+  top: 12px;
+  z-index: 40;
+  padding: 6px;
+  margin: 0 auto;
+  width: min(100% - 1.5rem, 640px);
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: var(--shadow-md);
+}
+
+.pf-nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0;
+}
+
+/* The pill is sized by its links — neutralize the shared container inside */
+.pf-nav .container {
+  max-width: none;
+  padding-inline: 0;
+  width: 100%;
+}
+
+.pf-nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  line-height: 1;
+  color: var(--text-muted);
+  padding: 0.6rem 1.05rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  white-space: nowrap;
+  transition: color var(--speed) var(--ease), background var(--speed) var(--ease),
+    border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease),
+    transform var(--speed) var(--ease);
+}
+
+.pf-nav-link:hover {
+  color: var(--accent);
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.pf-nav-link:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.pf-nav-link.active {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   5. Section shell
+   ========================================================================== */
+.pf-section {
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.pf-section-alt {
+  background: var(--bg-alt);
+  border-block: 1px solid var(--border);
+}
+
+.pf-section-head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--space-5);
+}
+
+.pf-kicker {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-2);
+}
+
+.pf-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  letter-spacing: -0.03em;
+  line-height: var(--lh-tight);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--space-2);
+}
+
+.pf-sub {
+  color: var(--text-muted);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+}
+
+/* ==========================================================================
+   6. About
+   ========================================================================== */
+.pf-about-grid {
+  display: grid;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.pf-about-grid > * {
+  min-width: 0;
+}
+
+.pf-about-copy p {
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+  font-size: var(--fs-md);
+  line-height: 1.7;
+}
+
+.pf-about-copy .btn {
+  margin-top: var(--space-1);
+}
+
+/* About Me — premium glass profile card */
+.pf-about-card {
+  position: relative;
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--surface) 78%, transparent), color-mix(in srgb, var(--surface-2) 55%, transparent));
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  padding: clamp(1.5rem, 4vw, 2rem);
+}
+
+[data-theme="dark"] .pf-about-card {
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--surface) 86%, var(--surface-3)) 0%,
+    var(--surface) 55%,
+    color-mix(in srgb, var(--surface) 92%, var(--bg)) 100%
+  );
+  border-color: var(--border);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.pf-about-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-3);
+  color: var(--text);
+}
+
+.pf-about-heading svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 10px;
+  padding: 0.3rem;
+  box-sizing: content-box;
+}
+
+.pf-about-body {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 62ch;
+  overflow: hidden;
+  height: auto;
+  transition: height 0.55s var(--ease);
+}
+
+.pf-about-body p {
+  color: var(--text-muted);
+  font-size: var(--fs-base);
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+
+.pf-about-more {
+  overflow: hidden;
+}
+
+.pf-about-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: var(--space-3);
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  transition:
+    transform var(--speed) var(--ease),
+    box-shadow var(--speed) var(--ease),
+    color var(--speed) var(--ease),
+    border-color var(--speed) var(--ease),
+    background var(--speed) var(--ease);
+}
+
+.pf-about-toggle:hover {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
+.pf-about-toggle:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.pf-about-toggle-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s var(--ease);
+}
+
+.pf-about-toggle[aria-expanded="true"] .pf-about-toggle-icon {
+  transform: rotate(180deg);
+}
+
+[data-theme="dark"] .pf-about-toggle {
+  background: var(--glass-bg);
+  border-color: var(--border);
+  box-shadow: var(--glass-highlight);
+}
+
+[data-theme="dark"] .pf-about-toggle:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.pf-about-cta {
+  margin-top: var(--space-3);
+}
+
+.pf-about-cta .btn {
+  min-height: 40px;
+  padding-block: 0.55rem;
+}
+
+/* Stat cards */
+.pf-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.pf-stats > * {
+  min-width: 0;
+}
+
+.pf-stat {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease),
+    border-color var(--speed) var(--ease);
+}
+
+.pf-stat::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease);
+}
+
+.pf-stat:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
+.pf-stat:hover::before {
+  transform: scaleX(1);
+}
+
+.pf-stat-value {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  color: var(--accent);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variant-numeric: var(--num-variant);
+  margin-bottom: 0.5rem;
+}
+
+.pf-stat-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   7. Skills
+   ========================================================================== */
+.pf-skills {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: 1fr;
+}
+
+.pf-skills > * {
+  min-width: 0;
+}
+
+.pf-skill-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease),
+    border-color var(--speed) var(--ease);
+}
+
+.pf-skill-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease);
+}
+
+.pf-skill-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
+.pf-skill-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Official tech logo tile */
+.pf-skill-icon {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin-bottom: var(--space-2);
+  transition: transform var(--speed) var(--ease), background var(--speed) var(--ease),
+    color var(--speed) var(--ease), box-shadow var(--speed) var(--ease);
+}
+
+.pf-skill-icon svg {
+  width: 34px;
+  height: 34px;
+  transition: transform var(--speed) var(--ease);
+}
+
+.pf-skill-card:hover .pf-skill-icon {
+  transform: scale(1.06);
+  box-shadow: var(--shadow-md);
+}
+
+.pf-skill-card:hover .pf-skill-icon svg {
+  transform: scale(1.1);
+}
+
+.pf-skill-name {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-medium);
+}
+
+.pf-skill-desc {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+/* Related-technologies marquee — seamless auto-scroll, pause on hover */
+.pf-skill-chip-track {
+  position: relative;
+  margin-top: var(--space-3);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  padding-block: 0.25rem;
+}
+
+.pf-skill-chip-run {
+  display: flex;
+  gap: 0.5rem;
+  width: max-content;
+  will-change: transform;
+  animation: pf-chip-scroll 22s linear infinite;
+}
+
+.pf-skill-card:hover .pf-skill-chip-run,
+.pf-skill-chip-track:hover .pf-skill-chip-run {
+  animation-play-state: paused;
+}
+
+.pf-skill-chip-run .chip {
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  box-shadow: var(--shadow-sm);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+  transition: color var(--speed) var(--ease), border-color var(--speed) var(--ease),
+    transform var(--speed) var(--ease);
+}
+
+.pf-skill-chip-run .chip:hover {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  transform: translateY(-1px);
+}
+
+@keyframes pf-chip-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+[data-theme="dark"] .pf-skill-chip-run .chip {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .pf-skill-chip-run .chip:hover {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+/* Accessible label for icon-only logos */
+.pf-skill-icon .visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   8. Services
+   ========================================================================== */
+.pf-services {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: 1fr;
+}
+
+.pf-services > * {
+  min-width: 0;
+}
+
+.pf-service {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease),
+    border-color var(--speed) var(--ease);
+}
+
+.pf-service::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease);
+}
+
+.pf-service:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
+.pf-service:hover::before {
+  transform: scaleX(1);
+}
+
+.pf-service-icon {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin-bottom: var(--space-1);
+  transition: transform var(--speed) var(--ease);
+}
+
+.pf-service:hover .pf-service-icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.pf-service h3 {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-medium);
+}
+
+.pf-service p {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+/* ==========================================================================
+   9. Projects carousel (infinite loop, pixel-precise)
+   ========================================================================== */
+.pf-carousel {
+  position: relative;
+}
+
+.pf-carousel-viewport {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.pf-carousel-track {
+  display: flex;
+  gap: var(--space-3);
+  transition: transform 0.6s var(--ease);
+  will-change: transform;
+}
+
+.pf-carousel-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  align-self: stretch;
+}
+
+.pf-project {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease),
+    border-color var(--speed) var(--ease);
+}
+
+.pf-project:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
+.pf-project-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--accent-soft), transparent 70%), var(--surface-2);
+  overflow: hidden;
+}
+
+.pf-project-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 20%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 60%);
+}
+
+.pf-project-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s var(--ease), opacity 0.5s var(--ease);
+}
+
+.pf-project-thumb img.is-loaded {
+  opacity: 1;
+}
+
+.pf-project:hover .pf-project-thumb img {
+  transform: scale(1.06);
+}
+
+/* Number badge over the image */
+.pf-project-thumb-num {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 1;
+  display: inline-grid;
+  place-items: center;
+  min-width: 42px;
+  height: 42px;
+  padding-inline: 0.5rem;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  font-variant-numeric: var(--num-variant);
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: color-mix(in srgb, var(--accent) 88%, transparent);
+  border: 1px solid color-mix(in srgb, #fff 30%, transparent);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+}
+
+.pf-project-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  flex: 1;
+}
+
+.pf-project-body h3 {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-medium);
+}
+
+.pf-project-body p {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  flex: 1;
+}
+
+.pf-project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pf-project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: var(--space-1);
+}
+
+/* Carousel controls — vertically centered arrows */
+.pf-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.pf-carousel-btn {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease),
+    color var(--speed) var(--ease), border-color var(--speed) var(--ease),
+    background var(--speed) var(--ease);
+}
+
+.pf-carousel-btn:hover {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.pf-carousel-btn:active {
+  transform: translateY(0) scale(0.94);
+}
+
+.pf-carousel-btn:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.pf-carousel-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Dots */
+.pf-carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pf-carousel-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: 0;
+  background: var(--border);
+  padding: 0;
+  cursor: pointer;
+  transition: width var(--speed) var(--ease), background var(--speed) var(--ease),
+    transform var(--speed) var(--ease);
+}
+
+.pf-carousel-dot:hover {
+  background: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+.pf-carousel-dot:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.pf-carousel-dot.active {
+  width: 26px;
+  background: var(--accent);
+}
+
+/* ==========================================================================
+   10. Contact
+   ========================================================================== */
+.pf-contact-grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.pf-contact-grid > * {
+  min-width: 0;
+}
+
+.pf-contact-info {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.pf-contact-card {
+  display: grid;
+  gap: var(--space-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-4);
+}
+
+.pf-contact-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+.pf-contact-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.pf-contact-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.pf-contact-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.pf-contact-value {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+/* Social links */
+.pf-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.pf-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  transition: color var(--speed) var(--ease), border-color var(--speed) var(--ease),
+    transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease);
+}
+
+.pf-social:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Contact form */
+.pf-form {
+  display: grid;
+  gap: var(--space-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-4);
+}
+
+.pf-form-title {
+  font-size: var(--fs-md);
+  letter-spacing: -0.01em;
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--space-1);
+}
+
+.pf-form-group {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.pf-form-group label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+}
+
+.pf-form-group input,
+.pf-form-group textarea {
+  width: 100%;
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1rem;
+  transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease);
+}
+
+.pf-form-group input:focus,
+.pf-form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.pf-form-group textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.pf-form-status {
+  min-height: 1.6em;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+}
+
+.pf-form-status.success {
+  color: var(--success);
+}
+
+.pf-form-status.error {
+  color: var(--danger);
+}
+
+/* ==========================================================================
+   11. Footer
+   ========================================================================== */
+.pf-footer {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  padding-block: var(--space-5) var(--space-4);
+}
+
+.pf-footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.pf-footer-brand {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.02em;
+}
+
+.pf-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.pf-footer-links a {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+  transition: color var(--speed) var(--ease);
+}
+
+.pf-footer-links a:hover {
+  color: var(--accent);
+}
+
+.pf-footer-socials {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.pf-social-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  transition: color var(--speed) var(--ease), border-color var(--speed) var(--ease),
+    transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease);
+}
+
+.pf-social-icon:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.pf-footer-copy {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  padding-top: var(--space-1);
+  border-top: 1px solid var(--border);
+  width: 100%;
+}
+
+/* ==========================================================================
+   12. Scroll to top — floating glass button
+   ========================================================================== */
+.scroll-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 62%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  color: var(--accent);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px) scale(0.92);
+  transition:
+    opacity var(--speed) var(--ease),
+    transform var(--speed) var(--ease),
+    visibility var(--speed) var(--ease),
+    border-color var(--speed) var(--ease),
+    box-shadow var(--speed) var(--ease),
+    background var(--speed) var(--ease);
+  cursor: pointer;
+}
+
+.scroll-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-top:hover {
+  transform: translateY(-3px);
+  color: #fff;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border-color: transparent;
+  box-shadow:
+    0 14px 32px -10px rgba(37, 99, 235, 0.55),
+    var(--shadow-md);
+}
+
+.scroll-top:active {
+  transform: translateY(0) scale(0.94);
+}
+
+.scroll-top:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.scroll-top svg {
+  width: 20px;
+  height: 20px;
+}
+
+[data-theme="dark"] .scroll-top {
+  background: var(--glass-bg-strong);
+  border-color: var(--border);
+  box-shadow: var(--glass-highlight), var(--shadow-md);
+}
+
+[data-theme="dark"] .scroll-top:hover {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* ==========================================================================
+   13. Responsive
+   ========================================================================== */
+/* Narrow screens: keep the pill nav compact so it never overflows */
+@media (max-width: 480px) {
+  .pf-nav {
+    top: 8px;
+    padding: 5px;
+    border-radius: 18px;
+    width: calc(100% - 1rem);
+  }
+
+  .pf-nav-list {
+    gap: 0.2rem;
+  }
+
+  .pf-nav-link {
+    font-size: 0.82rem;
+    padding: 0.5rem 0.65rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .pf-about-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-5);
+  }
+
+  .pf-skills,
+  .pf-services {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pf-carousel-slide {
+    flex-basis: 50%;
+  }
+
+  .pf-contact-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .pf-hero-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--space-6);
+  }
+
+  .pf-skills {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pf-services {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pf-carousel-slide {
+    flex-basis: 33.333%;
+  }
+
+  .pf-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==========================================================================
+   13. Buttons — consistent premium states (portfolio-scoped)
+   ========================================================================== */
+.pf-page .btn {
+  min-height: 46px;
+  padding-block: 0.75rem;
+}
+
+.pf-page .btn-sm {
+  min-height: 38px;
+  padding-block: 0.5rem;
+}
+
+.pf-page .btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.pf-page .btn-primary:active {
+  background: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================================================
+   14. Reduced motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .pf-blob,
+  .pf-portrait-ring {
+    animation: none;
+  }
+
+  .pf-carousel-track {
+    transition: none;
+  }
+
+  .pf-portrait-badge {
+    transition: none;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .pf-about-body {
+    transition: none;
+  }
+
+  .pf-about-toggle-icon {
+    transition: none;
+  }
+
+  .scroll-top {
+    transition: none;
+  }
+
+  .pf-skill-chip-run {
+    animation: none;
+  }
+
+  .pf-skill-chip-run .chip {
+    transition: none;
+  }
+}

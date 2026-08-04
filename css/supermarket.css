@@ -1,0 +1,715 @@
+/* ==========================================================================
+   ASSIGNMENT 2 — MINI SUPERMARKET CHECKOUT SYSTEM (premium redesign)
+   Extends the shared design system (css/style.css).
+   ========================================================================== */
+
+/* ---------- Hero header ---------- */
+.sm-hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(5rem, 10vh, 7rem) clamp(3rem, 6vh, 5rem);
+  background: var(--bg);
+}
+
+.sm-hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sm-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.5;
+}
+
+.sm-blob-1 {
+  width: 400px;
+  height: 400px;
+  top: -120px;
+  right: -80px;
+  background: radial-gradient(circle at 30% 30%, var(--accent), transparent 70%);
+}
+
+.sm-blob-2 {
+  width: 340px;
+  height: 340px;
+  bottom: -140px;
+  left: -60px;
+  background: radial-gradient(circle at 60% 40%, var(--accent), transparent 70%);
+}
+
+.sm-hero-inner {
+  position: relative;
+  max-width: 720px;
+}
+
+.sm-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  margin-bottom: var(--space-3);
+}
+
+.sm-hero-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 4px var(--success-soft);
+}
+
+.sm-hero-title {
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  font-weight: var(--fw-extrabold);
+  margin-bottom: var(--space-2);
+}
+
+.sm-hero-title .gradient {
+  background: linear-gradient(100deg, var(--accent), var(--accent-hover));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sm-hero-sub {
+  color: var(--text-muted);
+  font-size: var(--fs-md);
+  max-width: 560px;
+}
+
+/* ---------- Body sections ---------- */
+.sm-body {
+  background: var(--bg);
+}
+
+.sm-section {
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.sm-section-alt {
+  background: var(--bg-alt);
+  border-block: 1px solid var(--border);
+}
+
+.sm-section-head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--space-5);
+}
+
+.sm-kicker {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-2);
+}
+
+.sm-section-title {
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  letter-spacing: -0.03em;
+  line-height: var(--lh-tight);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--space-2);
+}
+
+.sm-section-sub {
+  color: var(--text-muted);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+}
+
+/* ---------- Product cards ---------- */
+.sm-products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.sm-product {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease),
+    border-color var(--speed) var(--ease);
+}
+
+.sm-product:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
+.sm-product-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--accent-soft), transparent 70%), var(--surface-2);
+  overflow: hidden;
+}
+
+.sm-product-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 20%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 60%);
+}
+
+.sm-product-thumb span {
+  position: relative;
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+.sm-product-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.sm-product-name {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-sm);
+}
+
+.sm-product-price {
+  font-weight: var(--fw-bold);
+  color: var(--accent);
+  font-size: var(--fs-sm);
+  font-variant-numeric: var(--num-variant);
+  white-space: nowrap;
+}
+
+/* ---------- Summary stats ---------- */
+.sm-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.sm-stat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease),
+    border-color var(--speed) var(--ease);
+}
+
+.sm-stat::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease);
+}
+
+.sm-stat:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
+.sm-stat:hover::before {
+  transform: scaleX(1);
+}
+
+.sm-stat-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin-bottom: var(--space-1);
+  transition: transform var(--speed) var(--ease);
+}
+
+.sm-stat:hover .sm-stat-icon {
+  transform: scale(1.08);
+}
+
+.sm-stat-value {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1;
+  font-variant-numeric: var(--num-variant);
+}
+
+.sm-stat-value-sm {
+  font-size: var(--fs-md);
+}
+
+.sm-stat-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- Product table ---------- */
+.sm-grid-2 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.sm-table-card,
+.sm-viz-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-4);
+}
+
+.sm-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-md);
+}
+
+.sm-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 380px;
+}
+
+.sm-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.sm-table th,
+.sm-table td {
+  text-align: left;
+  padding: 0.85rem 1rem;
+  font-size: var(--fs-sm);
+  border-bottom: 1px solid var(--border);
+}
+
+.sm-table th {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  background: var(--surface-2);
+}
+
+.sm-table tbody tr:nth-child(even) {
+  background: var(--surface-2);
+}
+
+.sm-table tbody tr {
+  transition: background var(--speed) var(--ease);
+}
+
+.sm-table tbody tr:hover {
+  background: var(--accent-soft);
+}
+
+.sm-table .sm-table-num {
+  font-weight: var(--fw-semibold);
+  color: var(--accent);
+  font-variant-numeric: var(--num-variant);
+}
+
+.sm-table .sm-table-price {
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: var(--num-variant);
+}
+
+/* ---------- Visualization ---------- */
+.sm-viz-title {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  margin-bottom: 0.25rem;
+}
+
+.sm-viz-sub {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.sm-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-4);
+  height: 200px;
+  padding-bottom: var(--space-2);
+}
+
+.sm-chart-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.sm-chart-bar {
+  position: relative;
+  width: min(70px, 100%);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  min-height: 4px;
+  transition: height 0.8s var(--ease);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.sm-chart-bar-above {
+  background: linear-gradient(180deg, var(--accent), var(--accent-hover));
+}
+
+.sm-chart-bar-below {
+  background: linear-gradient(180deg, var(--info), color-mix(in srgb, var(--info) 70%, var(--surface)));
+}
+
+.sm-chart-value {
+  position: absolute;
+  top: -1.6rem;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  font-variant-numeric: var(--num-variant);
+}
+
+.sm-chart-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.sm-chart-legend {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.sm-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+}
+
+.sm-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.sm-legend-above {
+  background: var(--accent);
+}
+
+.sm-legend-below {
+  background: var(--info);
+}
+
+/* ---------- Receipt ---------- */
+.sm-receipt-wrap {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: center;
+}
+
+.sm-receipt {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.sm-receipt-head {
+  text-align: center;
+  padding: var(--space-4) var(--space-3) var(--space-2);
+  border-bottom: 1px dashed var(--border);
+}
+
+.sm-receipt-head h3 {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.02em;
+}
+
+.sm-receipt-head p {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.sm-receipt-body {
+  padding: var(--space-3);
+  display: grid;
+  gap: 0.6rem;
+  font-size: var(--fs-sm);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.sm-receipt-line {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.sm-receipt-line span:last-child {
+  font-weight: var(--fw-medium);
+  font-variant-numeric: var(--num-variant);
+  white-space: nowrap;
+}
+
+.sm-receipt-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-top: 2px dashed var(--border);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-md);
+  font-variant-numeric: var(--num-variant);
+  color: var(--accent);
+}
+
+.sm-receipt-foot {
+  text-align: center;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  padding: var(--space-2) var(--space-3) var(--space-3);
+}
+
+/* Actions */
+.sm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+/* ---------- Responsive ---------- */
+@media (min-width: 640px) {
+  .sm-products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sm-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .sm-products-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .sm-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sm-grid-2 {
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: start;
+  }
+}
+
+@media (min-width: 1200px) {
+  .sm-stats {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* ==========================================================================
+   MOBILE OVERFLOW FIXES — guarantee zero horizontal page scroll
+   ========================================================================== */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.site-shell {
+  min-width: 0;
+}
+
+.site-shell > *,
+.sm-body > *,
+.container {
+  max-width: 100%;
+}
+
+/* Grid children must be allowed to collapse below content width */
+.sm-products-grid > *,
+.sm-stats > *,
+.sm-grid-2 > * {
+  min-width: 0;
+}
+
+/* ---------- Hero blobs: never extend past the viewport ---------- */
+@media (max-width: 640px) {
+  .sm-blob-1 {
+    width: 280px;
+    height: 280px;
+    top: -90px;
+    right: -120px;
+  }
+
+  .sm-blob-2 {
+    width: 240px;
+    height: 240px;
+    bottom: -100px;
+    left: -110px;
+  }
+}
+
+/* ---------- Product cards: wrap content inside ---------- */
+.sm-product {
+  min-width: 0;
+}
+
+.sm-product-info {
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.sm-product-name {
+  overflow-wrap: anywhere;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+@media (max-width: 480px) {
+  .sm-products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sm-product-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
+
+/* ---------- Summary cards: stack cleanly ---------- */
+.sm-stat-value-sm {
+  overflow-wrap: anywhere;
+  line-height: 1.3;
+}
+
+/* ---------- Table: horizontal scroll ONLY inside its container ---------- */
+.sm-table-card {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.sm-table-wrap {
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* ---------- Visualization ---------- */
+.sm-viz-card {
+  min-width: 0;
+}
+
+.sm-chart {
+  min-width: 0;
+}
+
+.sm-chart-value {
+  white-space: nowrap;
+}
+
+/* ---------- Receipt: fit fully, wrap long text ---------- */
+.sm-receipt {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.sm-receipt-line {
+  flex-wrap: wrap;
+}
+
+.sm-receipt-line span:last-child {
+  max-width: 60%;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.sm-receipt-total {
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* ---------- Actions: stack and stay inside ---------- */
+.sm-actions {
+  min-width: 0;
+}
+
+.sm-actions .btn {
+  max-width: 100%;
+  white-space: normal;
+}
+
+@media (max-width: 480px) {
+  .sm-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sm-actions .btn {
+    width: 100%;
+  }
+}

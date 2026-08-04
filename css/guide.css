@@ -1,0 +1,886 @@
+/* ==========================================================================
+   DEVELOPMENT GUIDE — premium software documentation (guide.html only)
+   Extends the shared design system (css/style.css).
+   ========================================================================== */
+
+/* ---------- 1. Page overflow guard ---------- */
+.gd-page {
+  overflow-x: hidden;
+}
+
+.gd-page .site-shell,
+.gd-page .container {
+  min-width: 0;
+}
+
+.gd-page main {
+  overflow: clip;
+}
+
+/* ---------- 2. Hero ---------- */
+.gd-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding-block: clamp(5rem, 11vh, 7.5rem) clamp(3.5rem, 7vh, 5rem);
+  background:
+    radial-gradient(58rem 34rem at 84% -14%, var(--accent-soft), transparent 64%),
+    radial-gradient(48rem 30rem at -12% 108%, var(--accent-soft), transparent 58%),
+    var(--bg);
+}
+
+.gd-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gd-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.42;
+}
+
+.gd-glow-1 {
+  width: min(460px, 78vw);
+  aspect-ratio: 1;
+  top: -8rem;
+  right: -6rem;
+  background: radial-gradient(circle at 32% 30%, var(--accent), transparent 70%);
+}
+
+.gd-glow-2 {
+  width: min(400px, 68vw);
+  aspect-ratio: 1;
+  bottom: -10rem;
+  left: -7rem;
+  background: radial-gradient(circle at 62% 42%, var(--accent), transparent 72%);
+  opacity: 0.3;
+}
+
+.gd-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(44rem 28rem at 50% 26%, rgba(0, 0, 0, 0.22), transparent 74%);
+  mask-image: radial-gradient(44rem 28rem at 50% 26%, rgba(0, 0, 0, 0.22), transparent 74%);
+  opacity: 0.55;
+}
+
+.gd-hero-inner {
+  position: relative;
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.gd-hero-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  margin-bottom: var(--space-3);
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  color: #fff;
+  box-shadow:
+    0 18px 40px -14px color-mix(in srgb, var(--accent) 65%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  animation: gd-icon-float 6s var(--ease) infinite alternate;
+}
+
+.gd-hero-icon svg {
+  width: 34px;
+  height: 34px;
+}
+
+@keyframes gd-icon-float {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-6px); }
+}
+
+.gd-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--surface) 42%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
+  padding: 0.5rem 1.05rem;
+  border-radius: 999px;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-3);
+}
+
+.gd-hero-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.gd-hero-title {
+  font-size: clamp(2.4rem, 7vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  font-weight: var(--fw-extrabold);
+  margin-bottom: var(--space-3);
+}
+
+.gd-hero-title .gradient {
+  background: linear-gradient(100deg, var(--accent), var(--accent-hover));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.gd-hero-sub {
+  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 620px;
+  margin-inline: auto;
+}
+
+.gd-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: var(--space-4);
+}
+
+/* ---------- 3. Body & sections ---------- */
+.gd-body {
+  background: var(--bg);
+}
+
+.gd-section {
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.gd-section-alt {
+  background:
+    radial-gradient(36rem 24rem at 88% -10%, rgba(59, 130, 246, 0.07), transparent 62%),
+    radial-gradient(30rem 22rem at 6% 112%, rgba(59, 130, 246, 0.05), transparent 60%),
+    var(--bg-alt);
+  border-block: 1px solid var(--border);
+}
+
+.gd-section-head {
+  max-width: 680px;
+  margin-bottom: var(--space-4);
+}
+
+.gd-step {
+  display: inline-grid;
+  place-items: center;
+  min-width: 40px;
+  height: 40px;
+  padding-inline: 0.5rem;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  font-variant-numeric: var(--num-variant);
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  border-radius: 12px;
+  box-shadow: 0 10px 22px -10px color-mix(in srgb, var(--accent) 60%, transparent);
+  margin-bottom: var(--space-2);
+}
+
+.gd-step-plain {
+  background: transparent;
+  color: var(--accent);
+  box-shadow: none;
+  font-size: var(--fs-lg);
+  width: auto;
+  min-width: 40px;
+}
+
+.gd-title {
+  font-size: clamp(1.6rem, 3.6vw, 2.3rem);
+  letter-spacing: -0.03em;
+  line-height: var(--lh-tight);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--space-1);
+}
+
+.gd-sub {
+  color: var(--text-muted);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+}
+
+/* ---------- 4. Table of contents ---------- */
+.gd-toc {
+  padding-top: var(--space-5);
+  padding-bottom: 0;
+}
+
+.gd-toc-card {
+  max-width: 720px;
+  margin-inline: auto;
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  padding: var(--space-3);
+}
+
+.gd-toc-label {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.gd-toc-list {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.gd-toc-link {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: color var(--speed) var(--ease), background var(--speed) var(--ease),
+    transform var(--speed) var(--ease);
+}
+
+.gd-toc-link:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateX(3px);
+}
+
+/* ---------- 5. Accordion ---------- */
+.gd-accordion {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--surface) 86%, var(--surface-3)) 0%,
+    var(--surface) 55%,
+    color-mix(in srgb, var(--surface) 92%, var(--bg)) 100%
+  );
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  transition: box-shadow var(--speed) var(--ease), border-color var(--speed) var(--ease);
+}
+
+.gd-accordion.is-open {
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.gd-acc-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: clamp(1rem, 3vw, 1.4rem);
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.gd-acc-head:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: -3px;
+  border-radius: var(--radius-lg);
+}
+
+.gd-acc-step {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  font-variant-numeric: var(--num-variant);
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  box-shadow: 0 10px 22px -10px color-mix(in srgb, var(--accent) 60%, transparent);
+  transition: transform var(--speed) var(--ease);
+}
+
+.gd-acc-head:hover .gd-acc-step {
+  transform: scale(1.05);
+}
+
+.gd-acc-titles {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.gd-acc-title {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.gd-acc-sub {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.gd-acc-chevron {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--surface-2) 60%, transparent);
+  transition: transform 0.3s var(--ease), color var(--speed) var(--ease),
+    border-color var(--speed) var(--ease);
+}
+
+.gd-acc-chevron svg {
+  width: 18px;
+  height: 18px;
+}
+
+.gd-acc-head[aria-expanded="true"] .gd-acc-chevron {
+  transform: rotate(180deg);
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+.gd-acc-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--ease);
+}
+
+.gd-acc-panel > .gd-acc-body {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.gd-accordion.is-open .gd-acc-panel {
+  grid-template-rows: 1fr;
+}
+
+.gd-acc-body {
+  display: grid;
+  gap: var(--space-3);
+  padding: 0 clamp(1rem, 3vw, 1.4rem) clamp(1rem, 3vw, 1.4rem);
+}
+
+.gd-acc-body > * {
+  min-width: 0;
+}
+
+/* ---------- 6. Cards ---------- */
+.gd-card {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--surface) 88%, transparent),
+    var(--surface)
+  );
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  padding: clamp(1.1rem, 3vw, 1.4rem);
+  transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease),
+    border-color var(--speed) var(--ease);
+}
+
+.gd-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+}
+
+.gd-card-title {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: var(--space-2);
+}
+
+.gd-card-title::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent);
+  flex-shrink: 0;
+}
+
+.gd-card p {
+  color: var(--text-muted);
+  font-size: var(--fs-base);
+  line-height: 1.75;
+  margin-bottom: var(--space-2);
+}
+
+.gd-card p:last-child {
+  margin-bottom: 0;
+}
+
+.gd-card code {
+  font-family: var(--num);
+  font-size: 0.9em;
+  font-weight: var(--fw-medium);
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+  border-radius: 6px;
+  padding: 0.1em 0.4em;
+}
+
+.gd-mt {
+  margin-top: var(--space-2);
+}
+
+/* ---------- 7. Badges / chips ---------- */
+.gd-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.gd-chips .chip {
+  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  font-weight: var(--fw-medium);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: color var(--speed) var(--ease), border-color var(--speed) var(--ease),
+    transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease);
+}
+
+.gd-chips .chip:hover {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .gd-chips .chip {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border);
+}
+
+/* ---------- 8. Flow diagrams ---------- */
+.gd-flow {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+}
+
+.gd-flow-step {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text);
+  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.gd-flow-arrow {
+  font-size: var(--fs-sm);
+  color: var(--accent);
+  line-height: 1;
+  padding-left: 1rem;
+}
+
+/* ---------- 9. Code blocks — premium dark dev theme ---------- */
+.gd-code {
+  position: relative;
+  margin: 0;
+  padding: 1.1rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: #0b1020;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), var(--shadow-md);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+/* Override the inline-code styling (.gd-card code) so the block stays
+   a clean dark panel — no light box, no border, no padding inside. */
+.gd-code code {
+  display: block;
+  font-family: var(--num);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #e2e8f0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* GitHub-Dark / One-Dark style syntax highlighting */
+.tok-k { color: #79c0ff; font-weight: 600; }   /* keywords — blue */
+.tok-s { color: #a5d6ff; }                     /* strings — light blue */
+.tok-n { color: #fbbf24; }                     /* numbers — orange */
+.tok-fn { color: #d2a8ff; }                    /* functions — purple */
+.tok-v { color: #e2e8f0; }                     /* variables — white */
+.tok-c { color: #7d8590; font-style: italic; } /* comments — gray */
+
+/* ---------- 10. Function grids & docs ---------- */
+.gd-func-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr;
+}
+
+.gd-func {
+  background: color-mix(in srgb, var(--surface-2) 55%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+}
+
+.gd-func-name {
+  display: inline-block;
+  font-family: var(--num);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.gd-func p {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.gd-func-doc {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.gd-func-doc-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--surface-2) 45%, transparent);
+  padding: 1rem;
+}
+
+.gd-func-doc-item > code {
+  font-family: var(--num);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.gd-func-doc-item ul {
+  list-style: none;
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+.gd-func-doc-item li {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.gd-func-doc-item strong {
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+  margin-right: 0.35rem;
+}
+
+/* ---------- 11. Callouts ---------- */
+.gd-callout {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.1rem;
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--surface-2) 55%, transparent);
+  box-shadow: var(--shadow-sm);
+}
+
+.gd-callout strong {
+  font-weight: var(--fw-bold);
+  margin-right: 0.4rem;
+}
+
+.gd-callout code {
+  font-family: var(--num);
+  font-size: 0.9em;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 5px;
+  padding: 0.05em 0.35em;
+}
+
+.gd-callout-tip { border-left: 4px solid var(--info); }
+.gd-callout-tip strong { color: var(--info); }
+.gd-callout-note { border-left: 4px solid var(--accent); }
+.gd-callout-note strong { color: var(--accent); }
+.gd-callout-warn { border-left: 4px solid var(--warning); }
+.gd-callout-warn strong { color: var(--warning); }
+
+/* ---------- 12. Concepts grid ---------- */
+.gd-concept-grid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: 1fr;
+}
+
+.gd-concept-grid .gd-card p {
+  margin-bottom: 0;
+}
+
+/* ---------- 13. Summary ---------- */
+.gd-summary {
+  position: relative;
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--surface) 86%, var(--surface-3)) 0%,
+    var(--surface) 55%,
+    color-mix(in srgb, var(--surface) 92%, var(--bg)) 100%
+  );
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  padding: clamp(1.75rem, 5vw, 2.5rem);
+}
+
+.gd-summary-icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--space-3);
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  color: #fff;
+  box-shadow: 0 14px 30px -12px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+.gd-summary-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.gd-summary .gd-title {
+  margin-bottom: var(--space-2);
+}
+
+.gd-summary p {
+  color: var(--text-muted);
+  font-size: var(--fs-base);
+  line-height: 1.75;
+  max-width: 60ch;
+  margin: 0 auto var(--space-2);
+}
+
+.gd-summary p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- 14. Reveal animations ---------- */
+.gd-page [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.gd-page [data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 15. Responsive ---------- */
+@media (min-width: 480px) {
+  .gd-func-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gd-concept-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 640px) {
+  .gd-flow {
+    justify-items: center;
+  }
+}
+
+@media (min-width: 900px) {
+  .gd-concept-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gd-acc-body {
+    gap: var(--space-4);
+  }
+}
+
+/* Small phones — tighten spacing so nothing crowds */
+@media (max-width: 380px) {
+  .gd-hero-meta .chip {
+    font-size: 0.72rem;
+    padding-inline: 0.6rem;
+  }
+
+  .gd-acc-step {
+    width: 40px;
+    height: 40px;
+  }
+
+  .gd-acc-sub {
+    font-size: 0.78rem;
+  }
+}
+
+/* ---------- 15b. Scroll to top — floating glass button ---------- */
+.gd-page .scroll-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 62%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  color: var(--accent);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px) scale(0.92);
+  transition:
+    opacity var(--speed) var(--ease),
+    transform var(--speed) var(--ease),
+    visibility var(--speed) var(--ease),
+    border-color var(--speed) var(--ease),
+    box-shadow var(--speed) var(--ease),
+    background var(--speed) var(--ease);
+  cursor: pointer;
+}
+
+.gd-page .scroll-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.gd-page .scroll-top:hover {
+  transform: translateY(-3px);
+  color: #fff;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border-color: transparent;
+  box-shadow:
+    0 14px 32px -10px rgba(37, 99, 235, 0.55),
+    var(--shadow-md);
+}
+
+.gd-page .scroll-top:active {
+  transform: translateY(0) scale(0.94);
+}
+
+.gd-page .scroll-top:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.gd-page .scroll-top svg {
+  width: 20px;
+  height: 20px;
+}
+
+[data-theme="dark"] .gd-page .scroll-top {
+  background: var(--glass-bg-strong);
+  border-color: var(--border);
+  box-shadow: var(--glass-highlight), var(--shadow-md);
+}
+
+[data-theme="dark"] .gd-page .scroll-top:hover {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* ---------- 16. Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .gd-hero-icon {
+    animation: none;
+  }
+
+  .gd-acc-panel {
+    transition: none;
+  }
+
+  .gd-page [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .gd-card,
+  .gd-chips .chip,
+  .gd-toc-link {
+    transition: none;
+  }
+
+  .gd-page .scroll-top {
+    transition: none;
+  }
+}
